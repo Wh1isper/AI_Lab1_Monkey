@@ -12,6 +12,9 @@ class State():
     def __len__(self):
         return self.cur_step()
 
+    def __str__(self):
+        return 'Monkey at {}. Box at {}. Banana at {}.'.format(self._monkey, self._box, self._banana)
+
     def print_current_state(self):
         print('Monkey at {}.'.format(self._monkey, end=', '))
         print('Box at {}.'.format(self._box, end=', '))

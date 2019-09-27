@@ -43,5 +43,11 @@ if __name__ == '__main__':
     monkey = input("猴子猴子在哪里？")
     box = input("箱子箱子在哪里？")
     banana = input("香蕉香蕉在哪里？")
-    # 你不输入的话，猴子箱子香蕉就在一起啦！
-    recur_solotion(State(monkey=monkey, box=box, banana=banana))
+    if monkey != '' and box != '' and banana!='':
+        state = State(monkey=monkey, box=box, banana=banana)
+    else:
+        print("有空输入，不算数哦")
+        print("只好听我的，猴子在A，香蕉在B，箱子在C")
+        state = State()
+    print(state)
+    recur_solotion(state)
