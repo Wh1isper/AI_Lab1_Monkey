@@ -1,0 +1,11 @@
+
+*.xml
+*.iml
+*.pyc
+.idea/AI_Lab1_Monkey.iml
+.idea/deployment.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/workspace.xml
+__pycache__/State.cpython-36.pyc
