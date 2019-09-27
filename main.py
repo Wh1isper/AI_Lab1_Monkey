@@ -2,6 +2,7 @@ from State import State
 
 MAX_STEP = 150
 
+
 def recur_solotion(state):
     if len(state) > MAX_STEP:
         print("Can't reach")
@@ -32,5 +33,4 @@ def recur_solotion(state):
 
 
 if __name__ == '__main__':
-
-    recur_solotion(State(monkey="赵家",box="钱家",banana="孙家"))
+    recur_solotion(State(monkey="赵家", box="钱家", banana="孙家"))
