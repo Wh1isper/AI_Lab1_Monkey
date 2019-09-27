@@ -6,6 +6,12 @@ class State():
         self._monkey_on_box = False
         self._path = []
 
+    def __getitem__(self, item):
+        return self.cur_state()[item]
+
+    def __len__(self):
+        return self.cur_step()
+
     def print_current_state(self):
         print('Monkey at {}.'.format(self._monkey, end=', '))
         print('Box at {}.'.format(self._box, end=', '))
@@ -58,9 +64,3 @@ class State():
 
     def monkey_on_box(self):
         return self._monkey_on_box
-
-    def __getitem__(self, item):
-        return self.cur_state()[item]
-
-    def __len__(self):
-        return self.cur_step()
