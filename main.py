@@ -16,9 +16,16 @@ def recur_solotion(state):
         exit(-1)
 
     if state.monkey_on_box():
-        state.grasp()
-        state.print_cur_path()
-        exit(0)
+        if state.box_in_position():
+            state.grasp()
+            print("----------Solution----------")
+            state.print_cur_path()
+            print("----------Solution----------",end='')
+            exit(0)
+        else:
+            state.climb_down_box()
+            recur_solotion(state)
+
 
     if state.box_in_position():
         if state.monkey_in_box_position():
@@ -43,8 +50,15 @@ if __name__ == '__main__':
     monkey = input("猴子猴子在哪里？")
     box = input("箱子箱子在哪里？")
     banana = input("香蕉香蕉在哪里？")
+    on_box = False
+    if monkey == box:
+        on_box = input("猴子在箱子上吗？(有输入则视作在箱子上)")
+        if on_box != '':
+            on_box = True
+        else:
+            on_box = False
     if monkey != '' and box != '' and banana!='':
-        state = State(monkey=monkey, box=box, banana=banana)
+        state = State(monkey=monkey, box=box, banana=banana, on_box=on_box)
     else:
         print("有空输入，不算数哦")
         print("只好听我的，猴子在A，香蕉在B，箱子在C")

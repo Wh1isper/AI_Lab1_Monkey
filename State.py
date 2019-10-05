@@ -1,9 +1,15 @@
 class State():
-    def __init__(self, monkey='A', box='B', banana='C'):
+    def __init__(self, monkey='A', box='B', banana='C', on_box = False):
         self._monkey = monkey
         self._box = box
         self._banana = banana
-        self._monkey_on_box = False
+        if on_box:
+            if self._monkey == self._box:
+                self._monkey_on_box = on_box
+            else:
+                raise Exception("Init error, the monkey must be in the same position as the box.")
+        else:
+            self._monkey_on_box = on_box
         self._path = []
 
     def __getitem__(self, item):
@@ -13,7 +19,12 @@ class State():
         return self.cur_step()
 
     def __str__(self):
-        return 'Monkey at {}. Box at {}. Banana at {}.'.format(self._monkey, self._box, self._banana)
+        str1 = 'Monkey at {}. Box at {}. Banana at {}. '.format(self._monkey, self._box, self._banana)
+        if self._monkey_on_box:
+            str2 = 'Monkey is on the box.'
+        else:
+            str2 = ''
+        return str1+str2
 
     def print_current_state(self):
         print('Monkey at {}.'.format(self._monkey, end=', '))
@@ -35,14 +46,20 @@ class State():
         if self._monkey != self._box:
             raise Exception("Invalid call, the monkey must be in the same position as the box.")
         if self._monkey_on_box:
-            raise Exception("Invalid call, the monkey is already in box.")
+            raise Exception("Invalid call, the monkey is already on box.")
         self._path.append("Monkey climb onto the box.")
         self._monkey_on_box = True
+
+    def climb_down_box(self):
+        if not self._monkey_on_box:
+            raise Exception("Invalid call, the monkey is not on box.")
+        self._path.append("Monkey climb dowm the box.")
+        self._monkey_on_box = False
 
     def grasp(self):
         if not self._monkey_on_box:
             raise Exception('Invalid call, the monkey has not yet climbed the box, try "state().climb_box()"')
-        self._path.append("Monkey got the banana!")
+        self._path.append("GRASP! Monkey got the banana!")
 
     def print_cur_path(self):
         for s in self._path:
