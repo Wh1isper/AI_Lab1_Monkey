@@ -1,5 +1,11 @@
 class State():
-    def __init__(self, monkey='A', box='B', banana='C', on_box = False):
+    def __init__(self, monkey='A', box='B', banana='C', on_box=False):
+        '''
+        :param monkey:monkey position
+        :param box: box position
+        :param banana: banana position
+        :param on_box: monkey on the box or not(If true, monkey must be in the same position as the box.)
+        '''
         self._monkey = monkey
         self._box = box
         self._banana = banana
@@ -10,6 +16,7 @@ class State():
                 raise Exception("Init error, the monkey must be in the same position as the box.")
         else:
             self._monkey_on_box = on_box
+        # Record strings according to the solution
         self._path = []
 
     def __getitem__(self, item):
@@ -24,7 +31,7 @@ class State():
             str2 = 'Monkey is on the box.'
         else:
             str2 = ''
-        return str1+str2
+        return str1 + str2
 
     def print_current_state(self):
         print('Monkey at {}.'.format(self._monkey, end=', '))
